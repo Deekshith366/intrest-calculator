@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compound Interest (Monthly)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px 20px;
+      background: #f0f4f8;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      flex-grow: 1;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #0a3622;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 30px;
+      padding: 10px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Compound Interest Calculator</h2>
+    <p>Monthly Interest Calculation</p>
+
+    <input type="number" id="principal" placeholder="Principal (₹)" />
+    <input type="number" id="rate" placeholder="Monthly Interest Rate (%)" />
+    <input type="number" id="months" placeholder="Time (in months)" />
+
+    <button onclick="calculateCI()">Calculate</button>
+
+    <div id="result"></div>
+  </div>
+
+  <div class="footer">
+    Made with ❤️ by <strong>Deekshith</strong>
+  </div>
+
+  <script>
+    function calculateCI() {
+      const P = parseFloat(document.getElementById("principal").value);
+      const R = parseFloat(document.getElementById("rate").value);
+      const T = parseInt(document.getElementById("months").value);
+
+      if (isNaN(P) || isNaN(R) || isNaN(T)) {
+        document.getElementById("result").innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      const A = P * Math.pow((1 + R / 100), T);
+      const CI = A - P;
+
+      document.getElementById("result").innerHTML = `
+        Final Amount after ${T} months: ₹${A.toFixed(2)}<br/>
+        Compound Interest Earned: ₹${CI.toFixed(2)}
+      `;
+    }
+  </script>
+</body>
+</html>
